@@ -1,0 +1,42 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+  <title>Page Title</title>
+
+  <link rel="stylesheet" href="{% static 'app1/stylesheets/foundation.min.css' %}">
+  <link rel="stylesheet" href="{% static 'app1/stylesheets/foundation.css' %}">
+  <link rel="stylesheet" href="{% static 'app1/stylesheets/app.css' %}">
+  <link rel="stylesheet" href="{% static 'app1/stylesheets/mystyles.css' %}">
+</head>
+
+<body>
+	{% include 'app1/login_modal.html' %}
+	{% include 'app1/header.html' %}
+	{% if user.is_authenticated %}
+		<h1>LOGGED IN as {{ user.username }}</h1>
+	{% endif%}
+	<div class='container' >
+		{% for post in all_posts %}
+			<div class='row' id='feedrow'>
+				<div class='five columns centered' id='feed'>
+					<a href=#>{{ post.user }}</a>
+					<p>{{ post.post_text }}<p>
+					<p>Likes {{ post.likes }}<p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+
+  <script src="{% static 'app1/javascripts/jquery.js' %}"></script>
+  <script src="{% static 'app1/javascripts/foundation.min.js' %}"></script>
+  <script src="{% static 'app1/javascripts/app.js' %}"></script>
+  <script src="{% static 'app1/javascripts/foundation/modernizr.foundation.js' %}"></script>
+</body>
+</html>
+
+	
